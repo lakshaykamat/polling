@@ -17,7 +17,7 @@ const RejectedAppointments = () => {
 
     return (
       <Card className="max-w-3xl p-4 mx-auto my-7">
-        <h1 className="my-4 text-2xl font-bold">Approved Appointments</h1>
+        <h1 className="my-4 text-2xl font-bold">Rejected Appointments</h1>
 
         {rejectedAppointments.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-8">

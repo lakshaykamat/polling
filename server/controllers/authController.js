@@ -1,4 +1,3 @@
-// controllers/authController.js
 const User = require("../models/User");
 const Teacher = require("../models/Teacher");
 const Student = require("../models/Student");
@@ -56,7 +55,7 @@ const registerUser = async (req, res) => {
     }
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
+      expiresIn: "21h",
     });
 
     res.status(201).json({ user, token });
@@ -80,7 +79,7 @@ const loginUser = async (req, res) => {
     }
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
+      expiresIn: "21h",
     });
 
     res.json({ user, token });

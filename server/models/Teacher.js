@@ -1,4 +1,3 @@
-// models/Teacher.js
 const mongoose = require("mongoose");
 const User = require("./User");
 

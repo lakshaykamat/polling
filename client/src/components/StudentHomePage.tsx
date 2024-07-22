@@ -23,7 +23,7 @@ import { useEffect, useState } from "react";
 import axiosInstance from "../lib/axios";
 import { DialogClose } from "../components/ui/dialog";
 import { Appointment, Teacher } from "../types";
-import useSWR, { mutate } from "swr";
+import useSWR from "swr";
 
 const fetcher = (url: string) => axiosInstance.get(url).then((res) => res.data);
 const StudentHomePage: React.FC = () => {
@@ -33,7 +33,6 @@ const StudentHomePage: React.FC = () => {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [selectedTeacher, setSelectedTeacher] = useState("");
-  //   const [yourAppointments, setYourAppointments] = useState([]);
   const { data, error, isLoading, mutate } = useSWR("/appointments", fetcher);
 
   useEffect(() => {
@@ -48,17 +47,6 @@ const StudentHomePage: React.FC = () => {
         console.error("Error fetching teachers:", error);
       }
     };
-    // const fetchYourAppointments = async () => {
-    //   try {
-    //     const response = await axiosInstance.get("/appointments");
-    //     console.log(response.data);
-    //     setYourAppointments(response.data);
-    //   } catch (error) {
-    //     console.log("Error fetching appointments");
-    //   }
-    // };
-
-    // fetchYourAppointments();
     fetchTeachers();
   }, []);
 
@@ -68,8 +56,7 @@ const StudentHomePage: React.FC = () => {
     e.preventDefault();
 
     try {
-      const response = await axiosInstance.post("/appointments", {
-        // studentId: user._id,
+      await axiosInstance.post("/appointments", {
         teacherId: selectedTeacher,
         date,
         time,
@@ -164,9 +151,11 @@ const AppointmentCard = ({
   status: string;
 }) => {
   return (
-    <div className="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-lg">
+    <div className="p-4 mb-4 border border-gray-200 rounded-lg shadow-lg bg-secondary text-secondary-foreground">
       <div className="flex items-center justify-between">
-        <h3 className="mb-2 text-xl font-semibold">{teacher.name}</h3>
+        <h3 className="mb-2 text-xl font-semibold text-secondary-foreground">
+          {teacher.name}
+        </h3>
         <div
           className={`px-3 py-1 ${status === "Pending" && "bg-yellow-400"} ${
             status === "Approved" && "bg-green-400"
@@ -177,10 +166,10 @@ const AppointmentCard = ({
           {status == "Rejected" && "Rejected"}
         </div>
       </div>
-      <p className="text-gray-700">
+      <p className="text-muted-foreground">
         <strong>Date:</strong> {new Date(date).toLocaleDateString()}
       </p>
-      <p className="text-gray-700">
+      <p className="text-muted-foreground">
         <strong>Time:</strong> {time}
       </p>
     </div>

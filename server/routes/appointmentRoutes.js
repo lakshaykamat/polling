@@ -6,7 +6,7 @@ const {
   deleteAppointment,
 } = require("../controllers/appointmentController");
 const { protect } = require("../middleware/auth");
-const { isAuthenticated, isTeacher } = require("../middleware/auth");
+const { isTeacher } = require("../middleware/auth");
 const Appointment = require("../models/Appointment");
 const router = express.Router();
 

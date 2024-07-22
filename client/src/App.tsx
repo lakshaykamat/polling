@@ -31,7 +31,7 @@ const App: React.FC = () => {
   //         await import("./index.css");
   //         console.log("Student CSS loaded");
   //       }
-  //       setCssLoaded(true);
+  //       // setCssLoaded(true);
   //     };
   //     loadCss();
   //   }
